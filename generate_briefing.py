@@ -12,6 +12,7 @@ the ai_summarize() stub at the bottom).
 """
 
 import json
+import uuid
 import feedparser
 from datetime import datetime, timezone, timedelta
 
@@ -120,7 +121,7 @@ def write_alexa_feed(segments, path="feed.json"):
         # flag duplicate update times / playback order issues.
         item_time = (base_time + timedelta(seconds=i)).strftime("%Y-%m-%dT%H:%M:%S.0Z")
         items.append({
-            "uid": f"briefing-{item_time}-{i}",
+            "uid": str(uuid.uuid4()),
             "updateDate": item_time,
             "titleText": title,
             "mainText": text,
